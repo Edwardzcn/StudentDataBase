@@ -1,5 +1,9 @@
 # {Name}
 
+学生信息系统的模板
+顺便试验一下VS链接Github
+练手<-->分享
+
 <!-- Replace this badge with your own-->
 [![Build status](https://ci.appveyor.com/api/projects/status/hv6uyc059rqbc6fj?svg=true)](https://ci.appveyor.com/project/madskristensen/extensibilitytools)
 
