@@ -11,17 +11,16 @@ public:
 	void set();
 	void check();
 	int id;
+	char sex;
 	string name;
 	string major;
 	StudentSc* next;
-
+	double ave;
 private:
 	//int id;
 	//string name;
-	char sex;
 	//string major;
 	double score[6];
-	double ave;
 	double best;
 	double worst;
 };
@@ -35,17 +34,16 @@ public:
 	void set();
 	void check();
 	int id;
+	char sex;
 	string name;
 	string major;
 	StudentTi* next;
-
+	double ave;
 private:
 	//int id;
 	//string name;
-	char sex;
 	//string major;
 	double score[6];
-	double ave;
 	double best;
 	double worst;
 };

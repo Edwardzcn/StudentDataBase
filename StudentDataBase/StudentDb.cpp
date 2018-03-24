@@ -1,5 +1,7 @@
 #include "StudentDb.h"
+#include "Student.h"
 #include <iostream>
+#include <iomanip>
 using namespace std;
 //
 //void addStudent();//增加学生记录
@@ -14,6 +16,7 @@ using namespace std;
 
 StudentDb::StudentDb() //构造函数
 {
+	//cout << "---------------------" << endl;
 	cout << "Successfully create studentdb" << endl;
 	head1 = NULL;
 	head2 = NULL;
@@ -59,6 +62,7 @@ void StudentDb::addStudent() //增加学生记录
 
 void StudentDb::deleteStudent()//删除学生记录
 {
+	cout << "Please input id/name to delete a student" << endl;
 	string row;
 	int num;
 	cin >> row;
@@ -162,16 +166,98 @@ void StudentDb::deleteStudent()//删除学生记录
 
 void StudentDb::sortStudent()//对学生排序
 {
-	;
+	//先采用冒泡法排序
+	StudentSc* psc = NULL;
+	StudentSc* qsc = NULL;
+	StudentTi* pti = NULL;
+	StudentTi* qti = NULL;
+	double temp;
+	for (psc = head1; psc != NULL; psc = psc->next)
+	{
+		for (qsc = psc->next; qsc != NULL; qsc = qsc->next)
+		{
+			if (psc->ave < qsc->ave)
+			{
+				temp = psc->ave;
+				psc->ave = qsc->ave;
+				qsc->ave = temp;
+			}
+
+		}
+	}
+	for (pti = head2; pti != NULL; pti = pti->next)
+	{
+		for (qti = pti->next; qti != NULL; qti = qti->next)
+		{
+			if (pti->ave < qti->ave)
+			{
+				temp = pti->ave;
+				pti->ave = qti->ave;
+				qti->ave = temp;
+			}
+
+		}
+	}
+
+	cout << "Successfully sort. Now show all students' rank" << endl;
+	cout << "-----------------------------------------------------" << endl;
+	int count;
+	for (count = 1, psc = head1,pti=head2; psc != NULL&&pti!=NULL;count++)
+	{
+		//并列无法输出同一名次，待改良
+		if (psc->ave > pti->ave)
+		{
+			cout << "   rank " << std::left << setfill(' ') << setw(3) << count << setfill('0') << std::right << setw(10) << psc->id << "   name--" << psc->name << "   sex--" << psc->sex << "   major--" << psc->major << "   averangeScore--" << psc->ave << endl;
+			psc = psc->next;
+		}
+		else 
+		{
+			cout << "   rank " << std::left << setfill(' ') << setw(3) << count << setfill('0') << std::right << setw(10) << pti->id << "   name--" << pti->name << "   sex--" << pti->sex << "   major--" << pti->major << "   averangeScore--" << pti->ave << endl;
+			pti = pti->next;
+		}
+	}
+	if (psc == NULL)
+	{
+		for (; pti != NULL; pti = pti->next, count++)
+		{
+			cout << "   rank " << std::left << setfill(' ') << setw(3) << count << setfill('0') << std::right << setw(10) << pti->id << "   name--" << pti->name << "   sex--" << pti->sex << "   major--" << pti->major << "   averangeScore--" << pti->ave << endl;
+		}
+	}
+	else if (pti == NULL)
+	{
+		for (; psc != NULL; psc = psc->next, count++)
+		{
+			cout << "   rank " << std::left << setfill(' ') << setw(3) << count << setfill('0') << std::right << setw(10) << psc->id << "   name--" << psc->name << "   sex--" << psc->sex << "   major--" << psc->major << "   averangeScore--" << psc->ave << endl;
+		}
+	}
+	cout << "-----------------------------------------------------" << endl;
 }
 
 void StudentDb::allStudent()//打印全部学生的信息
 {
 	//遍历链表，先打印计科，再打印
+	cout << "---------------------" << endl;
+	cout << "Students major in CS:" << endl;
+	StudentSc* p1 = head1;
+	while (p1 != NULL)
+	{
+		p1->check();
+		p1 = p1->next;
+	}
+
+	cout << endl << "Students major in TI:" << endl;
+	StudentTi *p2 = head2;
+	while (p2 != NULL)
+	{
+		p2->check();
+		p2 = p2->next;
+	}
+	cout << "---------------------" << endl;
 }
 
 void StudentDb::checkStudent()//查看单独学生信息
 {
+	cout << "Please input id/name to check a student's information" << endl;
 	string row;
 	int num;
 	cin >> row;
@@ -231,6 +317,7 @@ void StudentDb::checkStudent()//查看单独学生信息
 
 void StudentDb::updateStudent()//更新学生信息
 {
+	cout << "Please input id/name to update a student's information" << endl;
 	string row;
 	int num;
 	cin >> row;

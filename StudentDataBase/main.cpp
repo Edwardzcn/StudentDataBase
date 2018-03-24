@@ -3,32 +3,40 @@
 #include "public.h"
 #include <string>
 #include <iostream>
+#include <iomanip>
 using namespace std;
 int main()
 {
 	StudentDb db;
 	menue();
-	int mychoice = 0;
-	while (cin>>mychoice)
+	cout.precision(4);
+	char mychoice = 0;
+	while (cin >> mychoice && mychoice != 'Q'&&mychoice != 'q')
 	{
 		switch (mychoice)
 		{
-		case 1:
+		case 'A':
+		case 'a':
 			db.addStudent();
 			break;
-		case 2:
+		case 'D':
+		case 'd':
 			db.deleteStudent();
 			break;
-		case 3:
+		case 'C':
+		case 'c':
 			db.checkStudent();
 			break;
-		case 4:
+		case 'U':
+		case 'u':
 			db.updateStudent();
 			break;
-		case 5:
+		case 'S':
+		case 's':
 			db.sortStudent();
 			break;
-		case 6:
+		case 'Z':
+		case 'z':
 			db.allStudent();
 			break;
 		default:

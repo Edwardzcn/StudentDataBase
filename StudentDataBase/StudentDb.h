@@ -9,8 +9,6 @@ public:
 	void deleteStudent();//删除学生记录
 	void sortStudent();//对学生排序
 	void allStudent();//打印全部学生的信息
-	void checkStudent(int);
-	void checkStudent(string);
 	void checkStudent();
 	void updateStudent();//更新学生信息
 	void error();
